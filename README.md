@@ -1,10 +1,10 @@
-Here’s a well-structured `README.md` for your **quickviz** package:
+Here’s a well-structured `README.md` for your **fireviz** package:
 
 ---
 
-# 📊 quickviz - A Simple & Fast Data Visualization Library  
+# 📊 fireviz - A Simple & Fast Data Visualization Library  
 
-**quickviz** is a lightweight Python package for quick and insightful data visualizations. It allows you to generate various plots using **Matplotlib, Seaborn, Plotly, and NetworkX** with minimal effort.  
+**fireviz** is a lightweight Python package for quick and insightful data visualizations. It allows you to generate various plots using **Matplotlib, Seaborn, Plotly, and NetworkX** with minimal effort.  
 
 ## 🚀 Features  
 ✔ Supports multiple plot types: `scatter`, `bar`, `line`, `heatmap`, `pie`, `treemap`, `network`, `sankey`, and more!  
@@ -18,14 +18,9 @@ Here’s a well-structured `README.md` for your **quickviz** package:
 ## 📦 Installation  
 
 ```sh
-pip install git+https://github.com/yourusername/quickviz.git
+pip install fireviz
 ```
 
-or if publishing to PyPI:
-
-```sh
-pip install quickviz
-```
 
 ---
 
@@ -34,7 +29,7 @@ pip install quickviz
 ### 1️⃣ Import the package  
 ```python
 import pandas as pd
-import quickviz as qv
+import fireviz as fv
 ```
 
 ### 2️⃣ Load your dataset  
@@ -46,22 +41,22 @@ df = pd.read_csv("data.csv")
 
 #### 📌 Scatter Plot  
 ```python
-qv.plot(df, x="column1", y="column2", kind="scatter")
+fv.plot(df, x="column1", y="column2", kind="scatter")
 ```
 
 #### 📌 Histogram  
 ```python
-qv.plot(df["column1"], kind="hist", bins=20)
+fv.plot(df["column1"], kind="hist", bins=20)
 ```
 
 #### 📌 Correlation Heatmap  
 ```python
-qv.plot(df, kind="heatmap")
+fv.plot(df, kind="heatmap")
 ```
 
 #### 📌 Treemap  
 ```python
-qv.plot(df, x="category_column", y="value_column", kind="treemap")
+fv.plot(df, x="category_column", y="value_column", kind="treemap")
 ```
 
 ---
@@ -70,7 +65,7 @@ qv.plot(df, x="category_column", y="value_column", kind="treemap")
 
 The **`explore()`** function automatically generates visual summaries of your dataset.  
 ```python
-qv.explore(df)
+fv.explore(df)
 ```
 This will:  
 ✅ Print **dataset info, missing values, and statistics**  
