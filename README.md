@@ -135,7 +135,7 @@ Feel free to open an issue or submit a pull request on [GitHub](https://github.c
 ---
 
 ## 💬 Questions & Feedback  
-Got questions or feedback? Reach out to **your.email@example.com**.
+Got questions or feedback? Reach out to **ann.n.nabil@gmail.com*.
 
 Happy Visualizing! 🎨📊🚀
 
