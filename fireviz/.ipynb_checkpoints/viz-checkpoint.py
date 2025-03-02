@@ -2,33 +2,33 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+import networkx as nx
 import squarify
 import numpy as np
-import warnings
 
-# Suppress warnings for cleaner output
-warnings.simplefilter(action='ignore', category=FutureWarning)
-warnings.simplefilter(action='ignore', category=UserWarning)
-
-# Set aesthetic styles
+# Set fancy aesthetics
 sns.set_style("darkgrid")
 sns.set_palette("pastel")
 plt.style.use("ggplot")
 
+
 def plot(data, x=None, y=None, kind=None, **kwargs):
     """
-    Generate quick visualizations based on the data type and parameters.
-    
+    Generate a quick and elegant visualization based on the type of data provided.
+
     Parameters:
         data (pd.DataFrame or pd.Series): The dataset to visualize.
         x (str, optional): Column name for the x-axis.
         y (str, optional): Column name for the y-axis.
-        kind (str, optional): Type of plot ('hist', 'scatter', 'box', etc.).
-        **kwargs: Additional arguments for Seaborn or Matplotlib.
+        kind (str, optional): Type of plot ('hist', 'scatter', 'box', 'bar', etc.).
+        **kwargs: Additional keyword arguments for Seaborn, Matplotlib, or Plotly.
+
+    Returns:
+        None: Displays the plot.
     """
     if isinstance(data, pd.Series):
         kind = kind or 'hist'
-        sns.histplot(data, kde=True, color='royalblue', **kwargs)
+        sns.histplot(data, color='royalblue', **kwargs)
     elif isinstance(data, pd.DataFrame):
         if x and y:
             kind = kind or 'scatter'
@@ -41,11 +41,11 @@ def plot(data, x=None, y=None, kind=None, **kwargs):
             elif kind == 'bar':
                 sns.barplot(data=data, x=x, y=y, palette='crest', **kwargs)
             elif kind == 'bubble':
-                plt.scatter(data[x], data[y], s=np.abs(data[y]) * 0.1, alpha=0.6, color='mediumseagreen')
+                plt.scatter(data[x], data[y], s=data[y]*0.1, alpha=0.6, color='mediumseagreen')
             elif kind == 'area':
                 plt.fill_between(data[x], data[y], color='teal', alpha=0.5)
             elif kind == 'heatmap':
-                sns.heatmap(data[[x, y]].corr(), annot=True, cmap='coolwarm', linewidths=0.5)
+                sns.heatmap(data.corr(), annot=True, cmap='coolwarm', linewidths=0.5)
             elif kind == 'pie':
                 data.groupby(x)[y].sum().plot.pie(autopct='%1.1f%%', cmap='Set3')
             elif kind == 'donut':
@@ -59,7 +59,7 @@ def plot(data, x=None, y=None, kind=None, **kwargs):
                 return
         elif x:
             kind = kind or 'hist'
-            sns.histplot(data[x], kde=True, color='slateblue', **kwargs)
+            sns.histplot(data[x], color='slateblue', kde=True, **kwargs)
         else:
             print("Error: Please specify x and/or y for DataFrame plots.")
             return
@@ -69,56 +69,63 @@ def plot(data, x=None, y=None, kind=None, **kwargs):
     
     plt.show()
 
+
 def explore(data):
     """
-    Perform automatic exploratory data analysis, detecting numerical and categorical columns.
+    Automatically detects columns and generates relevant and aesthetically pleasing visualizations.
+
+    Parameters:
+        data (pd.DataFrame): The dataset to explore.
+
+    Returns:
+        None: Displays multiple plots.
     """
     if not isinstance(data, pd.DataFrame):
         print("Error: Input data must be a Pandas DataFrame.")
         return
-    
+
     print("Dataset Overview:")
     print(data.info())
     print("\nMissing Values:")
     print(data.isnull().sum())
     print("\nSummary Statistics:")
     print(data.describe())
-    
+
     num_cols = data.select_dtypes(include=['number']).columns.tolist()
     cat_cols = data.select_dtypes(exclude=['number']).columns.tolist()
-    
+
     print("\nDetected Numerical Columns:", num_cols)
     print("Detected Categorical Columns:", cat_cols)
-    
+
     for col in num_cols:
         plt.figure(figsize=(6, 4))
         sns.histplot(data[col], kde=True, color='royalblue')
         plt.title(f'Distribution of {col}')
         plt.show()
-        
+
         plt.figure(figsize=(6, 4))
         sns.boxplot(y=data[col], palette='Set2')
         plt.title(f'Boxplot of {col}')
         plt.show()
-    
+
     for col in cat_cols:
         plt.figure(figsize=(6, 4))
         sns.countplot(y=data[col], order=data[col].value_counts().index, palette='coolwarm')
         plt.title(f'Count of {col}')
         plt.show()
-    
+
     if len(num_cols) > 1:
         plt.figure(figsize=(8, 6))
         sns.heatmap(data[num_cols].corr(), annot=True, cmap='coolwarm', linewidths=0.5)
         plt.title('Correlation Heatmap')
         plt.show()
-    
+
     if len(num_cols) > 1:
         for i in range(len(num_cols) - 1):
             for j in range(i + 1, len(num_cols)):
                 plt.figure(figsize=(6, 4))
-                sns.scatterplot(data=data, x=num_cols[i], y=num_cols[j], hue=num_cols[i], palette='magma')
+                sns.scatterplot(data=data, x=num_cols[i], y=num_cols[j], palette='magma')
                 plt.title(f'Scatter Plot: {num_cols[i]} vs {num_cols[j]}')
                 plt.show()
-    
+
     print("Exploratory Data Analysis completed!")
