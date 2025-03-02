@@ -1,7 +1,3 @@
-Here’s a well-structured `README.md` for your **fireviz** package:
-
----
-
 # 📊 fireviz - A Simple & Fast Data Visualization Library  
 
 **fireviz** is a lightweight Python package for quick and insightful data visualizations. It allows you to generate various plots using **Matplotlib, Seaborn, Plotly, and NetworkX** with minimal effort.  
