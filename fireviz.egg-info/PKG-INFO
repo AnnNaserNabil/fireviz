@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: fireviz
-Version: 0.1.1
+Version: 0.1.3
 Summary: A quick and elegant visualization package for data analysis.
 Home-page: https://github.com/AnnNaserNabil/fireviz
 Author: Ann Naser Nabil
@@ -17,10 +17,6 @@ Requires-Dist: plotly
 Requires-Dist: networkx
 Requires-Dist: squarify
 Requires-Dist: numpy
-
-Here’s a well-structured `README.md` for your **fireviz** package:
-
----
 
 # 📊 fireviz - A Simple & Fast Data Visualization Library  
 

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="fireviz",
-    version="0.1.1",
+    version="0.1.3",
     author="Ann Naser Nabil",
     author_email="ann.naser@gmail.com",
     description="A quick and elegant visualization package for data analysis.",
