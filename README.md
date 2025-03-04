@@ -2,6 +2,11 @@
 
 **fireviz** is a lightweight Python package for quick and insightful data visualizations. It allows you to generate various plots using **Matplotlib, Seaborn, Plotly, and NetworkX** with minimal effort.  
 
+
+![PyPI - Downloads](https://img.shields.io/badge/fireviz-0-blue)
+
+
+
 ## 🚀 Features  
 ✔ Supports multiple plot types: `scatter`, `bar`, `line`, `heatmap`, `pie`, `treemap`, `network`, `sankey`, and more!  
 ✔ Handles both **Pandas DataFrames and Series** automatically.  
