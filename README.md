@@ -4,9 +4,7 @@
 
 
 
-<p align="center">
-  <img src="https://static.pepy.tech/badge/fireviz)](https://pepy.tech/projects/fireviz" alt="PyPI - Downloads">
-</p>
+[![PyPI Downloads](https://static.pepy.tech/badge/fireviz)](https://pepy.tech/projects/fireviz)
 
 
 
